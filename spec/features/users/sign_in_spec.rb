@@ -1,4 +1,5 @@
-# Feature: Sign in
+require 'spec_helper'
+# Feature: Sign inconf
 #   As a user
 #   I want to sign in
 #   So I can visit protected areas of the site
