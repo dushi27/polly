@@ -30,5 +30,6 @@ describe Answer do
 
   describe 'associations' do 
     it { should respond_to(:survey)}
+    it { should respond_to(:user)}
   end
 end

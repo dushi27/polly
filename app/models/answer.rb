@@ -3,4 +3,5 @@ class Answer < ApplicationRecord
 	validates :survey_id, presence: true
 
 	belongs_to :survey
+	has_one :user, through: :survey
 end
