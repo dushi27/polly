@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180628010710) do
+ActiveRecord::Schema.define(version: 20180628015334) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "question_id"
@@ -18,6 +18,13 @@ ActiveRecord::Schema.define(version: 20180628010710) do
     t.string   "choice_identifier"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+  end
+
+  create_table "surveys", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
