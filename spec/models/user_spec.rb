@@ -5,7 +5,6 @@ describe User do
   subject { @user }
 
 	describe 'creates a valid record' do 
-
 	  it { should respond_to(:email) }
 
 	  it "#email returns a string" do

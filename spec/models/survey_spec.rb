@@ -20,5 +20,7 @@ describe Survey do
 
 	describe 'associations' do 
 		it { should respond_to(:user) }
+		it { should respond_to(:questions) }
+		it { should respond_to(:answers) }
 	end
 end
