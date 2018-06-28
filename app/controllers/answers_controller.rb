@@ -27,7 +27,7 @@ class AnswersController < ApplicationController
     @answer = Answer.new(answer_params)
 
     if @answer.save
-      ActionCable.server.broadcast 'room_channel', content:  @answer.choice_identifier
+      ActionCable.server.broadcast "room_channel_user_#{@answer.user.id}", content:  @answer.choice_identifier
       # format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
       # format.json { render :show, status: :created, location: @answer }
     end
