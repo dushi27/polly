@@ -26,15 +26,13 @@ class AnswersController < ApplicationController
   def create
     @answer = Answer.new(answer_params)
 
-    respond_to do |format|
-      if @answer.save
-        format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
-        format.json { render :show, status: :created, location: @answer }
-      else
-        format.html { render :new }
-        format.json { render json: @answer.errors, status: :unprocessable_entity }
-      end
+    if @answer.save
+      ActionCable.server.broadcast 'room_channel', content:  @answer.choice_identifier
+      # format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
+      # format.json { render :show, status: :created, location: @answer }
     end
+
+    
   end
 
   # PATCH/PUT /answers/1
@@ -69,6 +67,6 @@ class AnswersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def answer_params
-      params.require(:answer).permit(:question_id, :choice_identifier)
+      params.require(:answer).permit(:question_id, :choice_identifier, :survey_id)
     end
 end
