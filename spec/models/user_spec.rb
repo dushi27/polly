@@ -4,10 +4,16 @@ describe User do
 
   subject { @user }
 
-  it { should respond_to(:email) }
+	describe 'creates a valid record' do 
+	  it { should respond_to(:email) }
 
-  it "#email returns a string" do
-    expect(@user.email).to match 'user@example.com'
-  end
+	  it "#email returns a string" do
+	    expect(@user.email).to match 'user@example.com'
+	  end
+	end
+
+	describe 'associations' do 
+		it {should respond_to(:surveys)}
+	end
 
 end
