@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Question do
 
-  before(:each) { @valid_question = Question.new(survey_id: 1, text: "foo", choices: {:foo => "bar"}) }
+  before(:each) { @valid_question = Question.new(survey_id: 1, text: "foo", choices: [1,2]) }
 
   subject { @valid_question }
 
@@ -13,10 +13,10 @@ describe Question do
 	  it { should respond_to(:choices)}
 
 	  it 'should raise error when survey_id is not present' do 
-	  	@question = Question.new(survey_id: nil, text: "foo", choices: {:foo => "bar"})
+	  	@question = Question.new(survey_id: nil, text: "foo", choices: [1,2])
 	  	expect(@question.valid?).to match false
 
-	  	@question = Question.new(text: "foo", choices: {:foo => "bar"})
+	  	@question = Question.new(text: "foo", choices: [1,2])
 	  	expect(@question.valid?).to match false
 	  end
 
@@ -30,14 +30,14 @@ describe Question do
 
 	  it 'should output choices as a hash attr' do 
 	  	@question = Question.new(survey_id: 1, text: "foo", choices: nil)
-	  	expect(@question.choices.is_a? Hash).to match true
+	  	expect(@question.choices.is_a? Array).to match true
 	  end
 
 	  it 'should raise error when text is not present' do 
-	  	@question = Question.new(survey_id: 1, text: nil, choices: {:foo => "bar"})
+	  	@question = Question.new(survey_id: 1, text: nil, choices: [1,2])
 	  	expect(@question.valid?).to match false
 
-	  	@question = Question.new(survey_id: 1, choices: {:foo => "bar"})
+	  	@question = Question.new(survey_id: 1, choices: [1,2])
 	  	expect(@question.valid?).to match false
 	  end
 	end

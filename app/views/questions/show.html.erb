@@ -1,19 +1,21 @@
-<p id="notice"><%= notice %></p>
+<h4 class='center'><%= @question.text %></h4>
+<div class='container'>
+	<div class='chart-container center'>
+		<%= pie :pie_chart, @pie_size, @pie_data%>
+	</div>
 
-<p>
-  <strong>Survey:</strong>
-  <%= @question.survey_id %>
-</p>
+	<div class='row'>
 
-<p>
-  <strong>Text:</strong>
-  <%= @question.text %>
-</p>
-
-<p>
-  <strong>Choices:</strong>
-  <%= @question.choices %>
-</p>
-
-<%= link_to 'Edit', edit_question_path(@question) %> |
-<%= link_to 'Back', questions_path %>
+	    <div class='left'>
+		    <strong>Legend</strong>
+			  <table class="table-without-boarders">
+			 	<%@question.choices.each_with_index do |choice,i| %>
+				  	<tr>
+				  		<td><i class="material-icons" style="color:<%=Question::COLORS[i].first%>">brightness_1</i></td>
+			  			<td><%=choice%></td>
+				  	</tr>
+			  	<%end%>
+			  </table>
+		</div>
+	</div>
+</div>

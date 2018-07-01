@@ -7,6 +7,7 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
@@ -14,27 +15,23 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
-  <body>
+  <body class='blue-grey darken-1'>
   <nav>
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo">Logo</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
+    <div class="nav-wrapper  red accent-1">
+     <div class="brand-logo"><%= link_to '<i class="material-icons icon-brown">poll</i>'.html_safe, root_path%></div>
+      <ul class="right hide-on-med-and-down">
         <% if user_signed_in? %>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, :method=>'delete' %></li>
-        <% else %>
-          <li><%= link_to 'Login', new_user_session_path %></li>
-        <% end %>
-        <% if user_signed_in? %>
-          <li><%= link_to 'Edit account', edit_user_registration_path %></li>
-        <% else %>
-          <li><%= link_to 'Sign up', new_user_registration_path %></li>
-        <% end %>
-        <% if user_signed_in? %>
-          <li><%= link_to 'Users', users_path %></li>
+          <li><%= link_to '<i class="material-icons ">view_list</i>'.html_safe, questions_path%></li>
+          <li><%= link_to '<i class="material-icons">edit</i>'.html_safe, edit_user_registration_path%></li>
+          <li><%= link_to '<i class="material-icons">exit_to_app</i>'.html_safe, destroy_user_session_path, :method=>'delete', class: 'signout'%></li>
+        <%else%>
+          <li><%= link_to '<i class="material-icons">person_outline</i>'.html_safe, new_user_session_path%></li>
+          <li><%= link_to '<i class="material-icons ">person_add</i>'.html_safe, new_user_registration_path%></li>
         <% end %>
       </ul>
     </div>
   </nav>
+
     <%= render 'layouts/messages' %>
     <div class='container'>
          <%= yield %>

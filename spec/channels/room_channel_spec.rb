@@ -2,11 +2,11 @@ require "rails_helper"
 
 RSpec.describe RoomChannel, type: :channel do
 
-  it "subscribes to the stream matching survey_owner's id" do
+  it "subscribes to the stream matching current_user's id" do
     @user = User.new(email: 'user@example.com', id: 1) 
-    stub_connection survey_owner: @user
+    stub_connection current_user: @user
 
-    subscribe(survey_owner: 1)
+    subscribe(current_user: 1)
 
     expect(subscription).to be_confirmed
     expect(streams.first).to include("room_channel_user_1")
@@ -15,9 +15,9 @@ RSpec.describe RoomChannel, type: :channel do
   it "should only subscribe to logged in survey owner's stream" do
     @user1 = User.new(email: 'user@example.com', id: 1) 
     @user2 = User.new(email: 'user@example.com', id: 2) 
-    stub_connection survey_owner: @user2
+    stub_connection current_user: @user2
 
-    subscribe(survey_owner: 1)
+    subscribe(current_user: 1)
 
     expect(streams.first).not_to include("room_channel_user_1")
     expect(streams.first).to include("room_channel_user_2")

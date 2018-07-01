@@ -1,5 +1,5 @@
 class Question < ApplicationRecord
-	serialize :choices, Hash
+	serialize :choices, Array
 	
 	validates :survey_id, presence: true
 	validates :text, presence: true
@@ -7,4 +7,6 @@ class Question < ApplicationRecord
 
 	belongs_to :survey
 	has_one :user, through: :survey
+
+	COLORS = [["#00B1B3", "#A4D8D9"], ["#FF4F00", "#FFA573"], ["#FFCF01", "#FFEAAB"]]
 end
