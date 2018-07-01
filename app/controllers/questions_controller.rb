@@ -56,6 +56,7 @@ class QuestionsController < ApplicationController
   # PATCH/PUT /questions/1
   # PATCH/PUT /questions/1.json
   def update
+    raise question_params.inspect
     respond_to do |format|
       if @question.update(question_params)
         format.html { redirect_to @question, notice: 'Question was successfully updated.' }
@@ -85,7 +86,7 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:survey_id, :text, :choices)
+      params.require(:question).permit(:text, :choices)
       params["question"]["choices"] = params["question"]["choices"].gsub("[","").gsub("]", "").split(",") if params["question"]["choices"].is_a? String
     end
 end
