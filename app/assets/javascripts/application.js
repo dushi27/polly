@@ -13,5 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require chart
+//= require nvd3
+//= require google
+//= require highcharts
 //= require bootstrap-sprockets
+//= require cable
 //= require_tree .

@@ -1,14 +1,11 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>User:</strong>
-  <%= @survey.user_id %>
-</p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @survey.title %>
-</p>
+<ul class="collection with-header">
+	<li class="collection-header"><h4><%=@survey.title%></h4></li>
+	<%if @questions.present?%>
+		<%@questions.each do |question|%>
+			<li class="collection-item"><div><%=question.text%><%=link_to 'Show', question_path(question.id), {class: 'secondary-content'}%></div></li>
+		<%end%>
+	<%end%>
+</ul>
 
 <%= link_to 'Edit', edit_survey_path(@survey) %> |
 <%= link_to 'Back', surveys_path %>

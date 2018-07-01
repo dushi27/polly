@@ -35,7 +35,6 @@ img {
 // to make views framework-neutral
 main {
   @extend .container;
-  background-color: #eee;
   padding-bottom: 80px;
   width: 100%;
   margin-top: 51px; // accommodate the navbar
@@ -79,4 +78,23 @@ section {
   @extend .btn;
   @extend .btn-primary;
   @extend .btn-xs;
+}
+
+.nav-wrapper {
+  padding-left: 10px;
+}
+
+i.icon-brown {
+    color: deep-orange darken-3;
+}
+.table-without-boarders {
+  border: "0";
+
+}
+.table-without-boarders tr{
+  border-bottom: none;
+}
+
+.transparentBG {
+  background-color: rgba(0,0,0,0);
 }

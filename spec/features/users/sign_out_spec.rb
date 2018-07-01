@@ -14,7 +14,8 @@ RSpec.feature "Sign out" do
     user = FactoryGirl.create(:user)
     signin(user.email, user.password)
     expect(page).to have_content I18n.t 'devise.sessions.signed_in'
-    click_link 'Sign Out'
+    # click_link 'Sign Out'
+    find(:xpath, '/html/body/nav/div/ul/li[3]/a').click
     expect(page).to have_content I18n.t 'devise.sessions.signed_out'
   end
 

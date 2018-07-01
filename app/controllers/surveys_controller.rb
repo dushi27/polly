@@ -1,15 +1,17 @@
 class SurveysController < ApplicationController
   before_action :set_survey, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /surveys
   # GET /surveys.json
   def index
-    @surveys = Survey.all
+    @surveys = Survey.where(user_id: current_user.id)
   end
 
   # GET /surveys/1
   # GET /surveys/1.json
   def show
+    @questions = Question.where(survey_id: params[:id])
   end
 
   # GET /surveys/new
@@ -69,6 +71,7 @@ class SurveysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
+      params[:user_id] = current_user.id
       params.require(:survey).permit(:user_id, :title)
     end
 end

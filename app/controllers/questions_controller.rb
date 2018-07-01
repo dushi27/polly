@@ -10,6 +10,22 @@ class QuestionsController < ApplicationController
   # GET /questions/1
   # GET /questions/1.json
   def show
+    @pie_size = {
+        :height => 400,
+        :width => 400,
+        options: {display: true}
+      }
+    
+    pie = []
+    color_counter = 0
+    data = Answer.where(question_id: @question.id).group(:choice_identifier).count
+    data.map {|k,v| pie << {value: v, 
+                            color: Question::COLORS[color_counter].first, 
+                            highlight: Question::COLORS[color_counter].last, 
+                            label: k, 
+                            display: true}; 
+                            color_counter += 1 }
+    @pie_data = pie.to_json
   end
 
   # GET /questions/new
@@ -70,5 +86,6 @@ class QuestionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
       params.require(:question).permit(:survey_id, :text, :choices)
+      params["question"]["choices"] = params["question"]["choices"].gsub("[","").gsub("]", "").split(",") if params["question"]["choices"].is_a? String
     end
 end
