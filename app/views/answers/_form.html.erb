@@ -1,3 +1,4 @@
+<h3><%=@question.text%></h3>
 <%= form_for(answer) do |f| %>
   <% if answer.errors.any? %>
     <div id="error_explanation">
@@ -10,18 +11,10 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="input-field col s6">
-    <%= f.label :question_id %>
-    <%= f.number_field :question_id, autofocus: true %>
-  </div>
-
-  <div class="input-field col s6">
-    <%= f.label :choice_identifier %>
-    <%= f.text_field :choice_identifier, autofocus: true %>
-  </div>
-
+  <%= f.hidden_field :question_id, autofocus: true %>
+  <%= select_tag :choice_identifier, options_for_select(@question.choices_select) %>
   <div class="waves-effect waves-light btn orange darken-1">
     <%= f.submit %>
   </div>
 <% end %>
+

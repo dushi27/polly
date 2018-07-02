@@ -58,7 +58,7 @@ Rails.application.configure do
   # Send email in development mode?
   config.action_mailer.perform_deliveries = true
 
-
+  config.short_code_url = 'localhost:3000/'
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 

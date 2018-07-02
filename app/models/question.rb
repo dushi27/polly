@@ -13,6 +13,12 @@ class Question < ApplicationRecord
 		self.choices.split(",")
 	end
 
+	def choices_select
+		c = self.choices.split(",")
+		result = []
+		c.map {|r| result << [r,r]}
+	end
+
 	def set_short_code
 		self.short_code ||= SecureRandom.hex(2)
 	end
