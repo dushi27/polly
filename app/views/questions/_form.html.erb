@@ -12,18 +12,18 @@
   <% end %>
 
   <div class="input-field col s6">
-    <%= f.label :text %>
-    <%= f.text_field :text, autofocus: true, class: "validate"%>
+    <%= f.label :question %>
+    <%= f.text_field :text, autofocus: true%>
     <span class="helper-text" data-error="Please enter survey question"></span>
   </div>
 
   <div class="input-field col s6">
-    <%= f.label :choices %>
-    <%= f.text_area :choices, class: 'materialize-textarea validate' %>
-    <span class="helper-text" data-error="Please enter a comma separated list">Enter items separated by comma</span>
+    <%= f.label :answer_choices %>
+    <%= f.text_area :choices, class: "materialize-textarea"%>
+    <span class="helper-text" data-error="Please enter a comma separated list">Enter answer choices separated by commas</span>
   </div>
 
-  <div class="waves-effect waves-light btn">
+  <div class="waves-effect waves-light btn orange darken-1">
     <%= f.submit %>
   </div>
 <% end %>

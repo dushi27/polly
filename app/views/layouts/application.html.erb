@@ -15,18 +15,18 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
-  <body class='blue-grey darken-1'>
+  <body class=''>
   <nav>
-    <div class="nav-wrapper  red accent-1">
-     <div class="brand-logo"><%= link_to '<i class="material-icons icon-brown">poll</i>'.html_safe, root_path%></div>
+    <div class="nav-wrapper indigo darken-1">
+     <div class="brand-logo"><%= link_to '<i class="material-icons icon-orange">poll</i>'.html_safe, root_path%></div>
       <ul class="right hide-on-med-and-down">
         <% if user_signed_in? %>
-          <li><%= link_to '<i class="material-icons ">view_list</i>'.html_safe, questions_path%></li>
-          <li><%= link_to '<i class="material-icons">edit</i>'.html_safe, edit_user_registration_path%></li>
-          <li><%= link_to '<i class="material-icons">exit_to_app</i>'.html_safe, destroy_user_session_path, :method=>'delete', class: 'signout'%></li>
+          <li><%= link_to '<i class="material-icons icon-orange">view_list</i>'.html_safe, questions_path%></li>
+          <li><%= link_to '<i class="material-icons icon-orange">edit</i>'.html_safe, edit_user_registration_path%></li>
+          <li><%= link_to '<i class="material-icons icon-orange">exit_to_app</i>'.html_safe, destroy_user_session_path, :method=>'delete', class: 'signout'%></li>
         <%else%>
-          <li><%= link_to '<i class="material-icons">person_outline</i>'.html_safe, new_user_session_path%></li>
-          <li><%= link_to '<i class="material-icons ">person_add</i>'.html_safe, new_user_registration_path%></li>
+          <li><%= link_to '<i class="material-icons icon-orange">person_outline</i>'.html_safe, new_user_session_path%></li>
+          <li><%= link_to '<i class="material-icons icon-orange">person_add</i>'.html_safe, new_user_registration_path%></li>
         <% end %>
       </ul>
     </div>

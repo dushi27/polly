@@ -1,7 +1,11 @@
 <h4 class='center'><%= @question.text %></h4>
 <div class='container'>
 	<div class='chart-container center'>
-		<%= pie :pie_chart, @pie_size, @pie_data%>
+		<%if @pie_data.empty?%>
+			 <h1>Data will show here</h1>
+		 <%else%>
+			<%= pie :pie_chart, @pie_size, @pie_data%>
+		<%end%>
 	</div>
 
 	<div class='row'>
@@ -9,7 +13,7 @@
 	    <div class='left'>
 		    <strong>Legend</strong>
 			  <table class="table-without-boarders">
-			 	<%@question.choices.each_with_index do |choice,i| %>
+			 	<%@question.choices_array.each_with_index do |choice,i| %>
 				  	<tr>
 				  		<td><i class="material-icons" style="color:<%=Question::COLORS[i].first%>">brightness_1</i></td>
 			  			<td><%=choice%></td>

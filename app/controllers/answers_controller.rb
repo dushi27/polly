@@ -31,8 +31,11 @@ class AnswersController < ApplicationController
       # format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
       # format.json { render :show, status: :created, location: @answer }
     end
+  end
 
-    
+  def post_answer
+    @question = Question.find(params[:question_id])
+    @question.answers.build(:choice_identifier=> params[:choice_identifier])
   end
 
   # PATCH/PUT /answers/1
