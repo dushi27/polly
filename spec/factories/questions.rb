@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :question do
-    survey_id 1
+  	user_id 1
     text "MyString"
-    choices "MyText"
+    choices ["MyText"]
   end
 end

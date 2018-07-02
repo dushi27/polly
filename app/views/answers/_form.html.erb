@@ -11,22 +11,17 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :survey_id %>
-    <%= f.number_field :survey_id %>
-  </div>
-
-  <div class="field">
+  <div class="input-field col s6">
     <%= f.label :question_id %>
-    <%= f.number_field :question_id %>
+    <%= f.number_field :question_id, autofocus: true %>
   </div>
 
-  <div class="field">
+  <div class="input-field col s6">
     <%= f.label :choice_identifier %>
-    <%= f.text_field :choice_identifier %>
+    <%= f.text_field :choice_identifier, autofocus: true %>
   </div>
 
-  <div class="actions">
+  <div class="waves-effect waves-light btn orange darken-1">
     <%= f.submit %>
   </div>
 <% end %>

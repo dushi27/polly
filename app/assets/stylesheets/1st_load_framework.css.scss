@@ -84,9 +84,13 @@ section {
   padding-left: 10px;
 }
 
-i.icon-brown {
-    color: deep-orange darken-3;
+i.icon-orange {
+  color: #fb8c00;
 }
+.material-icons {
+  color: #fb8c00;
+}
+
 .table-without-boarders {
   border: "0";
 
@@ -95,6 +99,6 @@ i.icon-brown {
   border-bottom: none;
 }
 
-.transparentBG {
-  background-color: rgba(0,0,0,0);
+.edit-navs a:visited{
+    color: black !important;
 }

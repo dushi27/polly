@@ -30,7 +30,7 @@ class QuestionsController < ApplicationController
 
   # GET /questions/new
   def new
-    @question = Question.new
+    @question = Question.new()
   end
 
   # GET /questions/1/edit
@@ -44,7 +44,7 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
-        format.html { redirect_to @question, notice: 'Question was successfully created.' }
+        format.html { redirect_to questions_path, notice: 'Question was successfully created.' }
         format.json { render :show, status: :created, location: @question }
       else
         format.html { render :new }
@@ -56,6 +56,7 @@ class QuestionsController < ApplicationController
   # PATCH/PUT /questions/1
   # PATCH/PUT /questions/1.json
   def update
+    raise question_params.inspect
     respond_to do |format|
       if @question.update(question_params)
         format.html { redirect_to @question, notice: 'Question was successfully updated.' }
@@ -85,7 +86,6 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:survey_id, :text, :choices)
-      params["question"]["choices"] = params["question"]["choices"].gsub("[","").gsub("]", "").split(",") if params["question"]["choices"].is_a? String
+      params.require(:question).permit(:text, :choices, :user_id).merge(user_id: current_user.id)
     end
 end

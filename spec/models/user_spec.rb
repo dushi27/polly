@@ -13,7 +13,7 @@ describe User do
 	end
 
 	describe 'associations' do 
-		it {should respond_to(:surveys)}
+		it {should respond_to(:questions)}
 	end
 
 end
