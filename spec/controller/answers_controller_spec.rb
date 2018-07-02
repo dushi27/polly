@@ -7,12 +7,4 @@ describe AnswersController do
 		    expect(response.success?).to match true
 		end
 	end
-
-	describe '#new', :type => :controller do 
-		it 'GET req succeed' do 
-			@question = Question.new(text: 'foo bar', short_code: 'abcd', choices: "1,2,3")
-		    get '/abcd'
-		    expect(response.success?).to match true
-		end
-	end
 end
