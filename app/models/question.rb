@@ -16,7 +16,7 @@ class Question < ApplicationRecord
 	def choices_select
 		c = self.choices.split(",")
 		result = []
-		c.map {|r| result << [r,r]}
+		c.map {|r| result << [r]}
 	end
 
 	def set_short_code

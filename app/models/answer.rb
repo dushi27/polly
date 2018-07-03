@@ -7,6 +7,6 @@ class Answer < ApplicationRecord
 	after_create_commit :broadcast_answer
 
 	def broadcast_answer
-		ActionCable.server.broadcast "room_channel_user_#{self.user.id}", content:  self.choice_identifier, user_id: self.survey.user.id
+		ActionCable.server.broadcast "room_channel_user_#{self.user.id}", content:  self.choice_identifier, user_id: self.user.id
 	end
 end
