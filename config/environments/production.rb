@@ -38,7 +38,6 @@ Rails.application.configure do
   # config.action_cable.mount_path = nil
   config.action_cable.url = 'wss://pollychart.herokuapp.com/cable' 
   config.action_cable.allowed_request_origins = [ 'http://pollychart.herokuapp.com', /http:\/\/pollychart.herokuapp*/ ]
-  config.action_cable_redis_url = ENV.fetch('ACTION_CABLE_REDIS_URL', nil)
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
