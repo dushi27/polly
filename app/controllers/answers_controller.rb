@@ -1,5 +1,6 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
+  before_action :set_question, only: [:new]
 
   # GET /answers
   # GET /answers.json
@@ -14,7 +15,7 @@ class AnswersController < ApplicationController
 
   # GET /answers/new
   def new
-    @answer = Answer.new
+    @answer = Answer.new(question_id: @question.id)
   end
 
   # GET /answers/1/edit
@@ -31,11 +32,6 @@ class AnswersController < ApplicationController
       # format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
       # format.json { render :show, status: :created, location: @answer }
     end
-  end
-
-  def post_answer
-    @question = Question.find(params[:question_id])
-    @question.answers.build(:choice_identifier=> params[:choice_identifier])
   end
 
   # PATCH/PUT /answers/1
@@ -70,6 +66,11 @@ class AnswersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def answer_params
-      params.require(:answer).permit(:question_id, :choice_identifier)
+      params.permit(:question_id, :choice_identifier)
+    end
+
+    def set_question
+      @question = Question.find_by(short_code: params[:short_code])
+      redirect_to root_path, notice: 'Invalid question url' unless @question
     end
 end

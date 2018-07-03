@@ -3,5 +3,6 @@ FactoryGirl.define do
   	user_id 1
     text "MyString"
     choices ["MyText"]
+    short_code "abcd"
   end
 end

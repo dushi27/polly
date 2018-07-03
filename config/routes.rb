@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   end
   root to: 'pages#index'
 
+  get '/:short_code', to: 'answers#new'
   mount ActionCable.server, at: '/cable'
 end

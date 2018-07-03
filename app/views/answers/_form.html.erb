@@ -1,27 +1,27 @@
-<%= form_for(answer) do |f| %>
-  <% if answer.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(answer.errors.count, "error") %> prohibited this answer from being saved:</h2>
+<div class='section'>
+  <h3><%=@question.text%></h3>
+</div>
 
-      <ul>
-      <% answer.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class='section'>
+  <%= form_for(answer) do |f| %>
+    <% if answer.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(answer.errors.count, "error") %> prohibited this answer from being saved:</h2>
+
+        <ul>
+        <% answer.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= hidden_field_tag :question_id, @question.id %>
+    <div class="input-field col s6">
+      <%= select_tag :choice_identifier, options_for_select(@question.choices_array) , class: "browser-default" %>
+    </div>
+    
+    <div class="waves-effect waves-light btn orange darken-1">
+      <%= submit_tag "Submit", data: { disable_with: "Thanks!" }%>
     </div>
   <% end %>
-
-  <div class="input-field col s6">
-    <%= f.label :question_id %>
-    <%= f.number_field :question_id, autofocus: true %>
-  </div>
-
-  <div class="input-field col s6">
-    <%= f.label :choice_identifier %>
-    <%= f.text_field :choice_identifier, autofocus: true %>
-  </div>
-
-  <div class="waves-effect waves-light btn orange darken-1">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

@@ -1,4 +1,5 @@
 <h4 class='center'><%= @question.text %></h4>
+<p class='center'>Submit your answer at <%="#{Rails.application.config.short_code_url}#{@question.short_code}"%></p>
 <div class='container'>
 	<div class='chart-container center'>
 		<%if @pie_data.empty?%>
