@@ -14,7 +14,6 @@ describe Question do
 	  it { should respond_to(:short_code)}
 
 	  it 'should create a short code' do 
-
 	  	@question = Question.new(user_id: 1, text: "foo", choices: "1,2")
 	  	@question.save!
 	  	expect(@question.short_code.size).to match 4
@@ -24,7 +23,7 @@ describe Question do
 	  	@question = Question.new(user_id: nil, text: "foo", choices: "1,2")
 	  	expect(@question.valid?).to match false
 
-	  	@question = Question.new(text: "foo", choices: [1,2])
+	  	@question = Question.new(text: "foo", choices: "1,2")
 	  	expect(@question.valid?).to match false
 	  end
 
@@ -47,6 +46,18 @@ describe Question do
 
 	  	@question = Question.new(user_id: 1, choices: "1,2")
 	  	expect(@question.valid?).to match false
+	  end
+
+	  it 'should sort str choices before saving' do 
+	  	@question = Question.new(user_id: 1, text: "foo", choices: "IOS, Apple")
+	  	@question.save!
+	  	expect(@question.choices).to match "Apple,IOS"
+	  end
+
+	  it 'should sort int choices before saving' do 
+	  	@question = Question.new(user_id: 1, text: "foo", choices: "2,1")
+	  	@question.save!
+	  	expect(@question.choices).to match "1,2"
 	  end
 	end
 
