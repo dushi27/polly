@@ -4,8 +4,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Polly" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Rails Devise" %>">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">  
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -14,8 +16,14 @@
         
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
   </head>
-  <body class=''>
+  <%if current_user.nil? and current_page?(root_path)%>
+    <body class='home-body'>
+  <%else%>
+    <body>
+  <%end%>
+  <%if current_user%>
   <nav>
     <div class="nav-wrapper indigo darken-1">
      <div class="brand-logo"><%= link_to '<i class="material-icons icon-orange">poll</i>'.html_safe, root_path%></div>
@@ -31,6 +39,7 @@
       </ul>
     </div>
   </nav>
+  <%end%>
 
     <%= render 'layouts/messages' %>
     <div class='container'>
